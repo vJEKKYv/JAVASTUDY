@@ -5,5 +5,5 @@
  * @author JEWON
  *
  */
-module week_04 {
+module week {
 }
