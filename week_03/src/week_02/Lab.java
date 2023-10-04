@@ -10,6 +10,6 @@ public class Lab {
 	public int getLabId() {return id;}
 	public String getLabTitle() {return title;}
 	public void ShowData() {
-		System.out.println(id+ "\t"+title);
+		System.out.println(id+"\t"+title);
 	}
 }
