@@ -33,14 +33,13 @@ public class MemberManager {
 	}
 	public int nickNameCheck(String nickName) { //닉네임 중복 체크 및 조회시 사용
 		for (int i=0;i<index;i++) {
-			if (memberList[i].nickName == nickName) {return i+1;}
+			if (memberList[i].nickName.equals(nickName)) {return i+1;}
 		}
 		return -1;
 	}
 	public void bookRental(BookManager BM) { //도서대여
 		int id, bookId;
 		String nickName, title;
-		showAllData();
 		System.out.print("닉네임: ");
 		nickName = input.next();
 		id = nickNameCheck(nickName);
@@ -48,11 +47,15 @@ public class MemberManager {
 			System.out.println("해당 닉네임은 없는 멤버입니다. ");
 			return;
 		}
+		if(memberList[id-1].book != null) {
+			System.out.println("이미 대여중입니다. 반납을 먼저 해주세요. ");
+			return;
+		}
 		BM.showAllData();
 		System.out.print("도서명: ");
 		title = input.next();
 		bookId = BM.titleCheck(title);
-		while(bookId==-1) { // 입력한 도서명 체크
+		if(bookId==-1) { // 입력한 도서명 체크
 			System.out.println("없는 도서명입니다. \n 다른 도서를 입력해주세요. ");
 			System.out.print("도서명: ");
 			title = input.next();
@@ -64,7 +67,6 @@ public class MemberManager {
 	public void bookReturn() {
 		int id;
 		String nickName;
-		showAllData();
 		System.out.print("닉네임: ");
 		nickName = input.next();
 		id = nickNameCheck(nickName);
@@ -72,12 +74,16 @@ public class MemberManager {
 			System.out.println("해당 닉네임은 없는 멤버입니다. ");
 			return;
 		}
+		if(memberList[id-1].book == null) {
+			System.out.println("대여 중인 도서가 없습니다. ");
+			return;
+		}
 		memberList[id-1].book = null;
 		System.out.println("반납되었습니다. ");
 	}
 	public void showAllData() {
 		System.out.println("------------------------------------");
-		System.out.println("id\t닉네임\t\t대여목록");
+		System.out.println("id\t닉네임\t대여목록");
 		System.out.println("------------------------------------");
 		for(int i=0; i<index;i++) {
 			memberList[i].showData();
@@ -90,12 +96,12 @@ public class MemberManager {
 		System.out.print("닉네임: ");
 		nickName = input.next();
 		id = nickNameCheck(nickName);
-		while(id == -1) { // 중복된 도서 있는지 체크
+		if(id == -1) { // 중복된 도서 있는지 체크
 			System.out.println("해당 닉네임은 없는 멤버입니다. ");
 			return;
 		}
 		System.out.println("------------------------------------");
-		System.out.println("id\\t닉네임\\t\\t대여목록");
+		System.out.println("id\t닉네임\t대여목록");
 		System.out.println("------------------------------------");
 		memberList[id-1].showData();
 		System.out.println("------------------------------------");

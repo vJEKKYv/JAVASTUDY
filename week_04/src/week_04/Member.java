@@ -11,10 +11,10 @@ public class Member {
 	}
 	public void showData() {
 		if (book == null) {
-			System.out.println(id+"\t"+nickName+"\t"+"대여중인 도서 없음");
+			System.out.println(id+"\t"+nickName+"\t"+" X");
 		}
 		else {
-			System.out.println(id+"\t"+nickName+"\t"+book.title+" 대여 중");
+			System.out.println(id+"\t"+nickName+"\t"+book.title);
 		}
 	}
 }

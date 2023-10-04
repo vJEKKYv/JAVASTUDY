@@ -9,7 +9,13 @@ public class Book {
 		this.writer = writer;
 		this.publisher = publisher;
 	}
+	public String getTitle() {return title;}
 	public void showData() {
-		System.out.println(id+"\t"+title+"\t"+writer+"\t"+publisher);
+		if(title.length()>4) {
+			System.out.println(id+"\t"+title+"\t"+writer+"\t"+publisher);
+		}
+		else {
+			System.out.println(id+"\t"+title+"\t\t"+writer+"\t"+publisher);
+		}
 	}
 }

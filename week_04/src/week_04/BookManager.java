@@ -38,33 +38,33 @@ public class BookManager {
 	}
 	public int titleCheck(String title) { // 중복 도서 체크 겸 도서 조회시 사용
 		for (int i=0;i<index;i++) {
-			if (bookList[i].title == title) {return i+1;}
+			if (bookList[i].getTitle().equals(title)) {return i+1;}
 		}
 		return -1;
 	}
 	public void showAllData() { // 모든 도서 출력
-		System.out.println("------------------------------------");
-		System.out.println("id\t제목\t저자\t출판사");
-		System.out.println("------------------------------------");
+		System.out.println("----------------------------------------");
+		System.out.println("id\t제목\t\t저자\t출판사");
+		System.out.println("----------------------------------------");
 		for(int i=0; i<index;i++) {
 			bookList[i].showData();
 		}
-		System.out.println("------------------------------------");
+		System.out.println("----------------------------------------");
 	}
 	public void showOneData() { // 도서 조회
 		int id;
 		String title;
 		System.out.print("도서명: ");
-		title = input.next();
+		title = input.nextLine();
 		id = titleCheck(title);
 		if(id == -1) { // 중복된 도서 있는지 체크
 			System.out.println("해당 도서는 없는 도서입니다. ");
 			return;
 		}
-		System.out.println("------------------------------------");
-		System.out.println("id\t제목\t저자\t출판사");
-		System.out.println("------------------------------------");
+		System.out.println("----------------------------------------");
+		System.out.println("id\t제목\t\t저자\t출판사");
+		System.out.println("----------------------------------------");
 		bookList[id-1].showData();
-		System.out.println("------------------------------------");
+		System.out.println("----------------------------------------");
 	}
 }
